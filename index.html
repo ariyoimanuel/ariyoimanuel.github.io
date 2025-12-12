@@ -72,16 +72,6 @@
 					    <li><a href="#contact" class="nav-link">Contact</a></li>
 					  </ul>
 					</nav>
-							<script>
-							document.querySelectorAll(".nav-link").forEach(link => {
-							  link.addEventListener("click", function (e) {
-							    e.preventDefault();
-							    const target = this.getAttribute("href");
-							    // forces reload and jumps to section
-							    window.location.href = window.location.pathname + target;
-							  });
-							});
-							</script>
 							<h2>Ariyo Imanuel Tarigan<br />
 							PhD student at University of the Ryukyus</h2>
 						</header>
@@ -511,10 +501,21 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+			document.querySelectorAll(".nav-link").forEach(link => {
+			  link.addEventListener("click", function (e) {
+			    e.preventDefault();
+			    const target = this.getAttribute("href");
+			    // forces reload and jumps to section
+			    window.location.href = window.location.pathname + target;
+			  });
+			});
+			</script>						  
 
 	</body>
 
 </html>
+
 
 
 
