@@ -56,39 +56,25 @@
 					    gap: 40px;
 					    font-size: 35px;           /* bigger font */
 					  ">
-					    <li><a href="#" style="text-decoration: none; color: #333; padding: 8px;">About Me</a></li>
-					    <li><a href="#research" style="text-decoration: none; color: #333; padding: 8px;">Projects</a></li>
-					    <li><a href="#publications" style="text-decoration: none; color: #333; padding: 8px;">Publications</a></li>
-					    <li><a href="#about" style="text-decoration: none; color: #333; padding: 8px;">CV</a></li>
-					    <li><a href="#contact" style="text-decoration: none; color: #333; padding: 8px;">Contact</a></li>
+					    <nav>
+					  <ul>
+					    <li><a href="#home" class="nav-link">Home</a></li>
+					    <li><a href="#research" class="nav-link">Research</a></li>
+					    <li><a href="#publications" class="nav-link">Publications</a></li>
+					    <li><a href="#about" class="nav-link">About Me</a></li>
+					    <li><a href="#contact" class="nav-link">Contact</a></li>
 					  </ul>
 					</nav>
-							<!-- Content Sections -->
-						<section id="home">
-						  <h1>About Me!</h1>
-						</section>
-						
-						<section id="research">
-						  <h2>Project</h2>
-						</section>
-						
-						<section id="publications">
-						  <h2>Publications</h2>
-						</section>
-						
-						<section id="about">
-						  <h2>CV</h2>
-						</section>
-						
-						<section id="contact">
-						  <h2>Contact</h2>
-						</section>
-						
-						<style>
-						html {
-						  scroll-behavior: smooth;
-						}
-						</style>
+							<script>
+							document.querySelectorAll(".nav-link").forEach(link => {
+							  link.addEventListener("click", function (e) {
+							    e.preventDefault();
+							    const target = this.getAttribute("href");
+							    // forces reload and jumps to section
+							    window.location.href = window.location.pathname + target;
+							  });
+							});
+							</script>
 							<h2>Ariyo Imanuel Tarigan<br />
 							PhD student at University of the Ryukyus</h2>
 						</header>
@@ -522,6 +508,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	</body>
 
 </html>
+
 
 
 
