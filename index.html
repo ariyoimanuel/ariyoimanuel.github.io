@@ -36,39 +36,153 @@
 						  <!-- One -->
 						  <section id="one">
 						    <header class="major">
+						<style>
+						  html {
+						    scroll-behavior: smooth;
+						  }
 						
+						  .nav-link {
+						    text-decoration: none;
+						    color: #333;
+						    font-weight: 500;
+						  }
+						
+						  .nav-link:hover {
+						    color: #0077aa;
+						  }
+						</style>
 						      <!-- Top Navigation -->
-						      <nav style="
-						        width: 100%;
-						        background: #ffffff;
-						        padding: 5px 0;            /* smaller padding -> moves closer to top */
-						        border-bottom: 1px solid #ddd;
-						        position: sticky;
-						        top: 0;
-						        z-index: 1000;
-						      ">
-						        <ul style="
-						          list-style: none;
-						          margin: 0;
-						          padding: 0;
-						          display: flex;
-						          justify-content: center;
-						          gap: 40px;
-						          font-size: 35px;
-						        ">
-						          <li><a href="#home" class="nav-link" style="text-decoration:none; color:#333;">About Me</a></li>
-						          <li><a href="#research" class="nav-link" style="text-decoration:none; color:#333;">Projects</a></li>
-						          <li><a href="#publications" class="nav-link" style="text-decoration:none; color:#333;">Publications</a></li>
-						          <li><a href="#about" class="nav-link" style="text-decoration:none; color:#333;">CV</a></li>
-						          <li><a href="#contact" class="nav-link" style="text-decoration:none; color:#333;">Contact</a></li>
-						        </ul>
-						      </nav>
-								<style>
-								  html {
-								    scroll-behavior: smooth;
-								  }
-								</style>
-	
+							  nav {
+							    width: 100%;
+							    background: #ffffff;
+							    padding: 8px 0;
+							    border-bottom: 1px solid #ddd;
+							    position: sticky;
+							    top: 0;
+							    z-index: 1000;
+							  }
+							
+							  nav ul {
+							    list-style: none;
+							    margin: 0;
+							    padding: 0;
+							    display: flex;
+							    justify-content: center;
+							    gap: 40px;
+							    font-size: 24px;
+							  }
+							
+							  nav a {
+							    text-decoration: none;
+							    color: #333;
+							    padding-bottom: 4px;
+							    transition: color 0.3s, border-bottom 0.3s;
+							  }
+							
+							  nav a:hover {
+							    color: #0077aa;
+							  }
+							
+							  nav a.active {
+							    color: #0077aa;
+							    border-bottom: 3px solid #0077aa;
+							  }
+							
+							  /* Sections */
+							  section {
+							    padding: 120px 15%;
+							    min-height: 100vh;
+							  }
+							
+							  h1 {
+							    margin-top: 0;
+							    font-size: 36px;
+							  }
+							
+							  p {
+							    font-size: 18px;
+							    line-height: 1.6;
+							  }
+							</style>
+							</head>
+							
+							<body>
+							
+							<!-- Navigation -->
+							<nav>
+							  <ul>
+							    <li><a href="#about-me" class="nav-link active">About Me</a></li>
+							    <li><a href="#research" class="nav-link">Projects</a></li>
+							    <li><a href="#publications" class="nav-link">Publications</a></li>
+							    <li><a href="#cv" class="nav-link">CV</a></li>
+							    <li><a href="#contact" class="nav-link">Contact</a></li>
+							  </ul>
+							</nav>
+							
+							<!-- Sections -->
+							<section id="about-me">
+							  <h1>About Me</h1>
+							  <p>
+							    I’m currently working in coral taxonomy, with a special interest in how
+							    hybridization and introgression shape relationships between coral species.
+							  </p>
+							</section>
+							
+							<section id="research">
+							  <h1>Projects</h1>
+							  <p>
+							    My research focuses on coral evolution, species boundaries, and gamete
+							    recognition during spawning events.
+							  </p>
+							</section>
+							
+							<section id="publications">
+							  <h1>Publications</h1>
+							  <p>
+							    Here you can find my peer-reviewed papers, preprints, and ongoing work.
+							  </p>
+							</section>
+							
+							<section id="cv">
+							  <h1>Curriculum Vitae</h1>
+							  <p>
+							    Download my CV or explore my academic background and experience.
+							  </p>
+							</section>
+							
+							<section id="contact">
+							  <h1>Contact</h1>
+							  <p>
+							    Feel free to reach out via email or social media.
+							  </p>
+							</section>
+							
+							<!-- JavaScript for active menu highlighting -->
+							<script>
+							  const sections = document.querySelectorAll("section");
+							  const navLinks = document.querySelectorAll(".nav-link");
+							
+							  window.addEventListener("scroll", () => {
+							    let current = "";
+							
+							    sections.forEach(section => {
+							      const sectionTop = section.offsetTop - 150;
+							      if (scrollY >= sectionTop) {
+							        current = section.getAttribute("id");
+							      }
+							    });
+							
+							    navLinks.forEach(link => {
+							      link.classList.remove("active");
+							      if (link.getAttribute("href") === "#" + current) {
+							        link.classList.add("active");
+							      }
+							    });
+							  });
+							</script>
+
+							</body>
+							</html>
 							<h2>Ariyo Imanuel Tarigan<br />
 							PhD student at University of the Ryukyus</h2>
 						</header>
@@ -512,6 +626,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	</body>
 
 </html>
+
 
 
 
