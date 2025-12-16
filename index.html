@@ -114,6 +114,21 @@
     font-size: 18px;
     color: var(--text-muted);
   }
+	:root {
+  	--bg-color: #ffffff;
+  	--text-color: #222;
+  	--text-muted: #666;
+  }
+	body.dark {
+  	--bg-color: #121212;
+  	--text-color: #eaeaea;
+  	--text-muted: #aaa;
+  }
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
 
   /* ---------- HERO ---------- */
   header {
@@ -237,7 +252,7 @@
   	margin-bottom: 64px; /* space BETWEEN years */
   }
   .year {
-  font-size: 3rem;   /* increase size */
+  font-size: 1rem;   /* increase size */
   font-weight: 700;  /* optional: make it bold */
   }
   
@@ -402,13 +417,27 @@ const observer = new IntersectionObserver(entries => {
 reveals.forEach(r => observer.observe(r));
 
 // Dark mode
-const toggle = document.getElementById('toggle');
-toggle.onclick = () => document.body.toggleAttribute('data-theme','dark');
+  const toggle = document.getElementById("themeToggle");
+
+  // Load saved theme
+  if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+    toggle.textContent = "☀️";
+  }
+
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    const isDark = document.body.classList.contains("dark");
+    toggle.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
 </script>
 
 
 </body>
 </html>
+
 
 
 
