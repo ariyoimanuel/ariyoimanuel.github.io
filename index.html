@@ -114,7 +114,7 @@
     font-size: 18px;
     color: var(--text-muted);
   }
-	:root {
+    :root {
   	--bg-color: #ffffff;
   	--text-color: #222;
   	--text-muted: #666;
@@ -125,10 +125,15 @@
   	--text-muted: #aaa;
   }
 
-body {
+  body {
   background-color: var(--bg-color);
   color: var(--text-color);
-}
+  }
+	  
+ .theme-toggle {
+  cursor: pointer;
+  font-size: 20px;
+  }
 
   /* ---------- HERO ---------- */
   header {
@@ -438,6 +443,7 @@ reveals.forEach(r => observer.observe(r));
 
 </body>
 </html>
+
 
 
 
