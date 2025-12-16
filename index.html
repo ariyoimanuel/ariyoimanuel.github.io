@@ -33,6 +33,14 @@
     --border-soft: #e5e7eb;
   }
 
+  [data-theme="dark"] {
+    --bg-main: #0f172a;
+    --card-bg: #111827;
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    --border-soft: #1f2937;
+  }
+
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
 
@@ -42,6 +50,7 @@
     background: linear-gradient(180deg, #eef5f8 0%, #f9fbfc 40%);
     color: var(--text-main);
     line-height: 1.75;
+    transition: background 0.4s ease, color 0.4s ease;
   }
 
   /* ---------- NAV ---------- */
@@ -49,9 +58,13 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.8);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border-soft);
+  }
+
+  [data-theme="dark"] nav {
+    background: rgba(15,23,42,0.85);
   }
 
   nav ul {
@@ -61,8 +74,8 @@
     list-style: none;
     padding: 14px 0;
     margin: 0;
-    font-size: 16px;
-    letter-spacing: 0.08em;
+    font-size: 15px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
@@ -83,7 +96,6 @@
     height: 3px;
     background: linear-gradient(90deg, var(--primary), var(--accent));
     transition: all 0.3s ease;
-    border-radius: 3px;
     transform: translateX(-50%);
   }
 
@@ -92,127 +104,159 @@
   nav a:hover::after,
   nav a.active::after { width: 100%; }
 
+  /* Dark mode toggle */
+  .theme-toggle {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--text-muted);
+  }
+
   /* ---------- HERO ---------- */
   header {
-    min-height: 70vh;
+    min-height: 75vh;
     display: grid;
     place-items: center;
     padding: 120px 20px 80px;
   }
 
   .hero {
-    max-width: 980px;
+    max-width: 1000px;
     display: grid;
     grid-template-columns: 180px 1fr;
-    gap: 48px;
+    gap: 52px;
     align-items: center;
   }
 
   .avatar img {
-    width: 160px;
+    width: 170px;
     border-radius: 50%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.22);
   }
 
   .hero h1 {
     font-family: "Source Serif 4", serif;
-    font-size: 48px;
-    margin: 0 0 10px;
-    letter-spacing: -0.03em;
+    font-size: 52px;
+    margin: 0 0 12px;
+    letter-spacing: -0.04em;
   }
 
   .hero .subtitle {
-    font-size: 20px;
+    font-size: 21px;
     color: var(--text-muted);
-    max-width: 720px;
+    max-width: 760px;
   }
 
   /* ---------- SECTIONS ---------- */
   section {
-    max-width: 980px;
+    max-width: 1000px;
     margin: auto;
-    padding: 100px 20px;
+    padding: 110px 20px;
     scroll-margin-top: 120px;
   }
 
   section h2 {
     font-family: "Source Serif 4", serif;
-    font-size: 32px;
-    margin-bottom: 20px;
+    font-size: 34px;
+    margin-bottom: 28px;
     position: relative;
   }
 
   section h2::after {
     content: "";
-    width: 60px;
+    width: 70px;
     height: 4px;
     background: linear-gradient(90deg, var(--primary), var(--accent));
     display: block;
-    margin-top: 10px;
-    border-radius: 2px;
+    margin-top: 12px;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* ---------- CARDS ---------- */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 28px;
-    margin-top: 40px;
-  }
-
   .card {
     background: var(--card-bg);
-    padding: 28px 30px;
-    border-radius: 18px;
-    box-shadow: 0 18px 50px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 32px 34px;
+    border-radius: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
     border: 1px solid var(--border-soft);
   }
 
-  .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 28px 70px rgba(0,0,0,0.12);
+  /* ---------- PUBLICATION TIMELINE ---------- */
+  .timeline {
+    position: relative;
+    margin-top: 50px;
+    padding-left: 30px;
   }
 
-  /* ---------- PUBLICATIONS ---------- */
-  .publication {
-    margin-bottom: 22px;
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
   }
 
-  .publication em { color: var(--text-muted); }
+  .entry {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 30px;
+  }
+
+  .entry::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  .entry span {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
 
   /* ---------- CONTACT ---------- */
   .contact-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 22px;
+    gap: 26px;
     margin-top: 40px;
   }
 
   .contact-links a {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 18px 22px;
-    background: linear-gradient(135deg, #ffffff, #f7fbfd);
-    border-radius: 16px;
+    gap: 18px;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, var(--card-bg), #f0f7fa);
+    border-radius: 20px;
     text-decoration: none;
     color: var(--text-main);
     font-weight: 500;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
   }
 
-  .contact-links a i {
-    font-size: 22px;
-    color: var(--primary);
-  }
-
-  .contact-links a:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 26px 60px rgba(0,0,0,0.14);
-  }
-
+  .contact-links a:hover { transform: translateY(-6px); }
   </style>
 
 
@@ -225,16 +269,15 @@
 <nav>
   <ul>
     <li><a href="#about" class="nav-link">About</a></li>
-    <li><a href="#news" class="nav-link">News</a></li>
     <li><a href="#publications" class="nav-link">Publications</a></li>
-    <li><a href="#cv" class="nav-link">CV</a></li>
     <li><a href="#contact" class="nav-link">Contact</a></li>
   </ul>
+  <div class="theme-toggle" id="toggle"><i class="fa-solid fa-moon"></i></div>
 </nav>
 
 
 <header>
-  <div class="hero">
+  <div class="hero reveal">
     <div class="avatar"><img src="images/personal.png" alt="Avatar"></div>
     <div>
       <h1>Ariyo Imanuel Tarigan</h1>
@@ -244,24 +287,24 @@
 </header>
 
 
-<section id="about">
+<section id="about" class="reveal">
   <h2>About</h2>
   <div class="card">
-    <p>I work on coral taxonomy and evolutionary ecology, focusing on hybridization, introgression, and gene flow in reef-building corals. My research integrates genomics, field ecology, and experimental approaches.</p>
+    <p>I study coral taxonomy and evolutionary ecology, focusing on hybridization, introgression, and gene flow in reef-building corals. My research integrates genomics, field ecology, and experimental approaches.</p>
   </div>
 </section>
 
 
-<section id="publications">
-  <h2>Selected Publications</h2>
-  <div class="grid">
-    <div class="card publication"><strong>Tarigan, A. I.</strong> et al. (2025). Introgression and adaptive potential following bleaching events in <em>Acropora</em>. <em>Current Biology</em>.</div>
-    <div class="card publication"><strong>Tarigan, A. I.</strong> et al. (2024). Intraspecific variation in coral responses to warming and acidification. <em>Coral Reefs</em>.</div>
+<section id="publications" class="reveal">
+  <h2>Publications</h2>
+  <div class="timeline">
+    <div class="entry"><span>2025</span><br><strong>Introgression and adaptive potential following bleaching events in <em>Acropora</em>.</strong> <em>Current Biology</em>.</div>
+    <div class="entry"><span>2024</span><br><strong>Intraspecific variation in coral responses to warming and acidification.</strong> <em>Coral Reefs</em>.</div>
   </div>
 </section>
 
 
-<section id="contact">
+<section id="contact" class="reveal">
   <h2>Contact</h2>
   <div class="contact-links">
     <a href="mailto:k248611@cs.u-ryukyu.ac.jp"><i class="fa-solid fa-envelope"></i>Email</a>
@@ -272,15 +315,25 @@
 
 
 <script>
+// Active nav
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-link");
 window.addEventListener("scroll", () => {
   let current = "";
-  sections.forEach(sec => {
-    if (scrollY >= sec.offsetTop - 150) current = sec.id;
-  });
+  sections.forEach(sec => { if (scrollY >= sec.offsetTop - 160) current = sec.id; });
   navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + current));
 });
+
+// Reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+}, { threshold: 0.15 });
+reveals.forEach(r => observer.observe(r));
+
+// Dark mode
+const toggle = document.getElementById('toggle');
+toggle.onclick = () => document.body.toggleAttribute('data-theme','dark');
 </script>
 
 
