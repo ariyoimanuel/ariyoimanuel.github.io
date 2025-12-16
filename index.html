@@ -238,9 +238,15 @@
   }
   .paper {
   display: -webkit-box;
-  -webkit-line-clamp: 3;        /* number of lines */
+  -webkit-line-clamp: 2;        /* number of lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  line-height: 1.6;
+  max-width: 100%;
+  }
+  .paper:hover {
+  -webkit-line-clamp: unset;
   }
 
   /* ---------- CONTACT ---------- */
@@ -405,6 +411,7 @@ toggle.onclick = () => document.body.toggleAttribute('data-theme','dark');
 
 </body>
 </html>
+
 
 
 
